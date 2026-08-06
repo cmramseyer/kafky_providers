@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :providers
-  resources :provider_orders, only: %i[index show]
+  resources :provider_orders, only: %i[index show] do
+    member do
+      patch :receive
+    end
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

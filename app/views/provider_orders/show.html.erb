@@ -22,3 +22,9 @@
     <dd><%= @provider_order.delivered? ? "Yes" : "Pending" %></dd>
   </div>
 </dl>
+
+<% unless @provider_order.delivered? %>
+  <div class="actions">
+    <%= button_to "Mark as received", receive_provider_order_path(@provider_order), method: :patch %>
+  </div>
+<% end %>

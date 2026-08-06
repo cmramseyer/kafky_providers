@@ -18,6 +18,7 @@
           <th>Description</th>
           <th>Quantity</th>
           <th>Received</th>
+          <th><span class="sr-only">Actions</span></th>
         </tr>
       </thead>
       <tbody>
@@ -28,6 +29,11 @@
             <td><%= provider_order.product_desc %></td>
             <td><%= provider_order.purchase_quantity %></td>
             <td><%= provider_order.delivered? ? "Yes" : "Pending" %></td>
+            <td class="row-actions">
+              <% unless provider_order.delivered? %>
+                <%= button_to "Receive", receive_provider_order_path(provider_order), method: :patch, class: "link-button" %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
