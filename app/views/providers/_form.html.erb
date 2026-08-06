@@ -1,0 +1,26 @@
+<%= form_with model: provider, class: "provider-form" do |form| %>
+  <% if provider.errors.any? %>
+    <section class="errors" aria-labelledby="error-heading">
+      <h2 id="error-heading"><%= pluralize(provider.errors.count, "error") %> prevented this provider from being saved:</h2>
+      <ul>
+        <% provider.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </section>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.email_field :email, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

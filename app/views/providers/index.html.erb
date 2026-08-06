@@ -1,0 +1,41 @@
+<% content_for :title, "Providers" %>
+
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Supply network</p>
+    <h1>Providers</h1>
+  </div>
+  <%= link_to "New provider", new_provider_path, class: "button" %>
+</section>
+
+<% if @providers.any? %>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th><span class="sr-only">Actions</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @providers.each do |provider| %>
+          <tr>
+            <td><%= provider.name %></td>
+            <td><%= provider.email %></td>
+            <td class="row-actions">
+              <%= link_to "View", provider %>
+              <%= link_to "Edit", edit_provider_path(provider) %>
+              <%= button_to "Delete", provider, method: :delete, class: "link-button", form: { data: { turbo_confirm: "Delete this provider?" } } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <section class="empty-state">
+    <h2>No providers yet</h2>
+    <p>Create a provider before processing low-stock events.</p>
+  </section>
+<% end %>

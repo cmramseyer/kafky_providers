@@ -1,0 +1,11 @@
+<% content_for :title, "New provider" %>
+
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Supply network</p>
+    <h1>New provider</h1>
+  </div>
+  <%= link_to "Back", providers_path, class: "button secondary" %>
+</section>
+
+<%= render "form", provider: @provider %>

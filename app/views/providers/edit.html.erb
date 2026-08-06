@@ -1,0 +1,11 @@
+<% content_for :title, "Edit #{@provider.name}" %>
+
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Supply network</p>
+    <h1>Edit provider</h1>
+  </div>
+  <%= link_to "Back", @provider, class: "button secondary" %>
+</section>
+
+<%= render "form", provider: @provider %>
