@@ -1,0 +1,24 @@
+<% content_for :title, @provider_order.product_sku %>
+
+<section class="page-header">
+  <div>
+    <p class="eyebrow"><%= @provider_order.provider.name %></p>
+    <h1><%= @provider_order.product_desc %></h1>
+  </div>
+  <%= link_to "Back", provider_orders_path, class: "button secondary" %>
+</section>
+
+<dl class="provider-details">
+  <div>
+    <dt>SKU</dt>
+    <dd><%= @provider_order.product_sku %></dd>
+  </div>
+  <div>
+    <dt>Purchase quantity</dt>
+    <dd><%= @provider_order.purchase_quantity %></dd>
+  </div>
+  <div>
+    <dt>Received</dt>
+    <dd><%= @provider_order.delivered? ? "Yes" : "Pending" %></dd>
+  </div>
+</dl>

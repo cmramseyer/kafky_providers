@@ -14,6 +14,7 @@
 body { margin: 0; }
 .site-header { background: #5a2d1b; padding: 1rem max(1.5rem, calc((100vw - 70rem) / 2)); }
 .site-name { color: #fff8f2; font-weight: 700; text-decoration: none; }
+.site-link { color: #f9d5c2; margin-left: 1rem; text-decoration: none; }
 .page { margin: 0 auto; max-width: 70rem; padding: 2.5rem 1.5rem; }
 .page-header, .header-actions, .row-actions, .actions { align-items: center; display: flex; gap: 0.75rem; }
 .page-header { justify-content: space-between; margin-bottom: 2rem; }
