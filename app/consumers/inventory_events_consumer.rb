@@ -21,12 +21,13 @@ class InventoryEventsConsumer < ApplicationConsumer
     # TODO: Define replenishment behavior for products without a reorder point.
     return if reorder_point.zero?
 
-    ProviderOrder.find_or_create_by!(source_event_id: payload.fetch("event_id")) do |provider_order|
+    provider_order = ProviderOrder.find_or_create_by!(source_event_id: payload.fetch("event_id")) do |provider_order|
       provider_order.provider = random_provider!
       provider_order.product_sku = product.fetch("sku")
       provider_order.product_desc = product.fetch("item_desc")
       provider_order.purchase_quantity = (2 * reorder_point) - product.fetch("available_quantity").to_i
     end
+    ProviderOrderBroadcaster.created(provider_order) if provider_order.previously_new_record?
   end
 
   def random_provider!

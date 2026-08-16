@@ -1,5 +1,7 @@
 <% content_for :title, "Purchase orders" %>
 
+<%= turbo_stream_from "provider_orders" %>
+
 <section class="page-header">
   <div>
     <p class="eyebrow">Supply operations</p>
@@ -8,40 +10,6 @@
   <%= link_to "Providers", providers_path, class: "button secondary" %>
 </section>
 
-<% if @provider_orders.any? %>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Provider</th>
-          <th>SKU</th>
-          <th>Description</th>
-          <th>Quantity</th>
-          <th>Received</th>
-          <th><span class="sr-only">Actions</span></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @provider_orders.each do |provider_order| %>
-          <tr>
-            <td><%= provider_order.provider.name %></td>
-            <td><%= link_to provider_order.product_sku, provider_order %></td>
-            <td><%= provider_order.product_desc %></td>
-            <td><%= provider_order.purchase_quantity %></td>
-            <td><%= provider_order.delivered? ? "Yes" : "Pending" %></td>
-            <td class="row-actions">
-              <% unless provider_order.delivered? %>
-                <%= button_to "Receive", receive_provider_order_path(provider_order), method: :patch, class: "link-button" %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-<% else %>
-  <section class="empty-state">
-    <h2>No purchase orders yet</h2>
-    <p>Low-stock events will create purchase orders here.</p>
-  </section>
-<% end %>
+<div id="provider_orders">
+  <%= render "provider_orders/provider_order_list", provider_orders: @provider_orders %>
+</div>

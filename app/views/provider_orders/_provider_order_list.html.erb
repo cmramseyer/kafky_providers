@@ -1,0 +1,26 @@
+<% highlight_provider_order_id = local_assigns[:highlight_provider_order_id] %>
+
+<% if provider_orders.any? %>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Provider</th>
+          <th>SKU</th>
+          <th>Description</th>
+          <th>Quantity</th>
+          <th>Received</th>
+          <th><span class="sr-only">Actions</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "provider_orders/provider_order", collection: provider_orders, as: :provider_order, locals: { highlight_provider_order_id: highlight_provider_order_id } %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <section class="empty-state">
+    <h2>No purchase orders yet</h2>
+    <p>Low-stock events will create purchase orders here.</p>
+  </section>
+<% end %>

@@ -1,0 +1,12 @@
+<tr id="<%= dom_id(provider_order) %>" class="<%= "provider-order-created" if provider_order.id == highlight_provider_order_id %>">
+  <td><%= provider_order.provider.name %></td>
+  <td><%= link_to provider_order.product_sku, provider_order %></td>
+  <td><%= provider_order.product_desc %></td>
+  <td><%= provider_order.purchase_quantity %></td>
+  <td><%= provider_order.delivered? ? "Yes" : "Pending" %></td>
+  <td class="row-actions">
+    <% unless provider_order.delivered? %>
+      <%= button_to "Receive", receive_provider_order_path(provider_order), method: :patch, class: "link-button" %>
+    <% end %>
+  </td>
+</tr>
